@@ -1,0 +1,568 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   ☕ 바이브 카페 주문서 (Vibe Cafe Order Form)
+   DESIGN (1).md (Ohouse Reference Design System) 명세를 반영한 스타일시트
+   - Action Blue: #00a1ff
+   - Canvas White: #ffffff
+   - Foreground Text: #2f3438
+   - Body Neutral: #424242
+   - Muted Neutral: #828c94
+   - Hairline Border: #e0e0e0
+   - Font Face: 'Pretendard Variable' (Tracking: -0.3px)
+   - Radius: 4px (Buttons, Inputs, Cards) / 24px (Circular Floating Control)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 글로벌 기본 설정 & 리셋
+   -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    letter-spacing: -0.3px; /* DESIGN.md: Tracking -0.3px */
+    background-color: #f7f9fa; /* 부드러운 뉴트럴 바탕 */
+    color: #424242; /* Body neutral */
+    line-height: 1.5;
+    padding: 40px 16px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   2. 레이아웃 컨테이너 (Canvas White & Hairline)
+   -------------------------------------------------------------------------- */
+.container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    background-color: #ffffff; /* Canvas white */
+    border: 1px solid #e0e0e0; /* Hairline */
+    border-radius: 4px; /* DESIGN.md: 4px corner */
+    padding: 36px 30px;
+    box-shadow: 0px 2px 8px rgba(63, 71, 77, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   3. 헤더 타이포그래피 (DESIGN.md Section 3 명세)
+   -------------------------------------------------------------------------- */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* DESIGN.md: Home h1 (30px / 400 or 700 / 30px / -0.3px) */
+.home-h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: -0.3px;
+    color: #2f3438;
+    margin-bottom: 6px;
+}
+
+/* DESIGN.md: Body large (16px / 400 / 24px / -0.3px) */
+.body-large {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.3px;
+    color: #828c94;
+}
+
+/* --------------------------------------------------------------------------
+   4. 폼 그룹 & 라벨 스타일
+   -------------------------------------------------------------------------- */
+.form-group {
+    margin-bottom: 20px; /* Spacing cluster: 20px */
+}
+
+.label-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2f3438;
+    margin-bottom: 8px; /* Spacing cluster: 6px~9px */
+    letter-spacing: -0.3px;
+}
+
+.required-mark {
+    color: #00a1ff; /* Action blue */
+    font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   5. 입력 필드 스타일 (DESIGN.md: 1px solid #e0e0e0, 4px radius)
+   -------------------------------------------------------------------------- */
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0; /* Hairline */
+    border-radius: 4px; /* DESIGN.md: 4px radius */
+    font-family: inherit;
+    font-size: 14px;
+    color: #141414; /* Input text */
+    background-color: #ffffff;
+    letter-spacing: -0.3px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #828c94; /* Muted neutral */
+}
+
+/* 포커스 시 Action blue(#00a1ff) 테두리 강조 */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #00a1ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 161, 255, 0.15);
+}
+
+.form-textarea {
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   6. 메뉴 이미지 카드 그리드
+   -------------------------------------------------------------------------- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.menu-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+}
+
+.menu-card:hover {
+    border-color: #828c94;
+    background-color: #f7f9fa;
+}
+
+/* 카드 선택 시: Action Blue(#00a1ff) 테두리 및 은은한 하이라이트 */
+.menu-card.active {
+    border: 2px solid #00a1ff;
+    background-color: #f0f9ff;
+    padding: 11px 5px; /* 2px border 보정 */
+}
+
+.menu-card .menu-img {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 6px auto;
+    display: block;
+    pointer-events: none;
+}
+
+.menu-card .menu-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2f3438;
+    margin-bottom: 2px;
+    letter-spacing: -0.3px;
+    pointer-events: none;
+}
+
+.menu-card .menu-price {
+    font-size: 12px;
+    font-weight: 500;
+    color: #00a1ff; /* Action blue로 가격 강조 */
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. 라디오 버튼 & 체크박스 (가로 배치)
+   -------------------------------------------------------------------------- */
+.inline-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding-top: 4px;
+}
+
+.inline-item {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.inline-item input[type="radio"],
+.inline-item input[type="checkbox"] {
+    margin-right: 6px;
+    cursor: pointer;
+    accent-color: #00a1ff; /* Action blue */
+    width: 16px;
+    height: 16px;
+}
+
+.inline-item label {
+    display: inline;
+    font-weight: 400;
+    font-size: 14px;
+    color: #424242;
+    cursor: pointer;
+    letter-spacing: -0.3px;
+}
+
+/* --------------------------------------------------------------------------
+   8. [신규 추가] 실시간 주문내역 & 예상 결제 금액 안내 박스
+   -------------------------------------------------------------------------- */
+.live-preview-box {
+    background-color: #f7f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin: 24px 0 20px 0;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.preview-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2f3438;
+}
+
+.preview-badge {
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #e5f5ff;
+    color: #00a1ff;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.preview-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.preview-label {
+    color: #828c94;
+}
+
+.preview-val {
+    color: #2f3438;
+    font-weight: 500;
+    text-align: right;
+    max-width: 65%;
+    word-break: keep-all;
+}
+
+.preview-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.preview-total-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2f3438;
+}
+
+.preview-total-amount {
+    font-size: 20px;
+    font-weight: 800;
+    color: #00a1ff; /* Action blue로 예상 금액 강조 */
+}
+
+/* --------------------------------------------------------------------------
+   9. 버튼 스타일 (주문하기 & 다시 작성)
+   -------------------------------------------------------------------------- */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* [Compact blue action] (주문하기: #00a1ff) */
+.btn-compact-action {
+    flex: 1.6;
+    background-color: #00a1ff;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 4px;
+    padding: 0 16px;
+    height: 44px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-compact-action:hover {
+    opacity: 0.9;
+}
+
+.btn-compact-action:active {
+    transform: scale(0.99);
+}
+
+/* [Outlined utility control] (다시 작성: #e0e0e0) */
+.btn-utility-outline {
+    flex: 1;
+    background-color: transparent;
+    color: #2f3438;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 0 12px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-utility-outline:hover {
+    background-color: #f7f9fa;
+    border-color: #d0d0d0;
+}
+
+/* --------------------------------------------------------------------------
+   10. 주문 완료 영수증 카드
+   -------------------------------------------------------------------------- */
+.receipt-section {
+    margin-top: 32px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.receipt-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 24px 20px;
+}
+
+/* 주문 완료 안내 배너 */
+.order-success-msg {
+    background-color: #f0f9ff;
+    border: 1px solid #bce1ff;
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.order-success-msg .success-icon {
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.order-success-msg strong {
+    color: #0084d1;
+    font-size: 14px;
+}
+
+.order-success-msg .success-desc {
+    font-size: 12px;
+    color: #55778f;
+    margin-top: 3px;
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.receipt-badge {
+    display: inline-block;
+    background-color: #f0f9ff;
+    color: #00a1ff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.receipt-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2f3438;
+    margin-bottom: 4px;
+}
+
+.receipt-date {
+    font-size: 12px;
+    color: #828c94;
+}
+
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.receipt-table th,
+.receipt-table td {
+    padding: 9px 4px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.receipt-table th {
+    width: 30%;
+    color: #828c94;
+    font-weight: 500;
+    text-align: left;
+}
+
+.receipt-table td {
+    color: #2f3438;
+    text-align: right;
+    word-break: break-all;
+}
+
+/* 총 결제금액 행 */
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 4px;
+    border-top: 2px solid #2f3438;
+    margin-top: 8px;
+}
+
+.receipt-total .total-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2f3438;
+}
+
+.receipt-total .total-amount {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00a1ff; /* Action blue로 결제금액 강조 */
+}
+
+/* 엑셀 파일 다시 다운로드 버튼 */
+.btn-excel {
+    width: 100%;
+    margin-top: 16px;
+    height: 44px;
+    background-color: #2f3438;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border: 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: -0.3px;
+    transition: background-color 0.15s ease;
+}
+
+.btn-excel:hover {
+    background-color: #141414;
+}
+
+/* --------------------------------------------------------------------------
+   11. 플로팅 컨트롤
+   -------------------------------------------------------------------------- */
+.floating-controls {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+}
+
+.btn-floating-circular {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: #ffffff;
+    border: 0px;
+    box-shadow: 0px 2px 5px rgba(63, 71, 77, 0.15);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-floating-circular:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 10px rgba(63, 71, 77, 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   12. 애니메이션 및 반응형
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px 8px;
+    }
+
+    .container {
+        padding: 24px 16px;
+    }
+
+    .home-h1 {
+        font-size: 22px;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
